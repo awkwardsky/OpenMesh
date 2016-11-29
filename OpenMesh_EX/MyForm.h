@@ -69,6 +69,8 @@ namespace OpenMesh_EX {
 	private: System::Windows::Forms::SaveFileDialog^  saveModelDialog;
 	private: System::Windows::Forms::ToolStripMenuItem^  saveModelToolStripMenuItem;
 	private: HKOGLPanel::HKOGLPanelControl^  hkoglPanelControl1;
+	private: System::Windows::Forms::ToolStripMenuItem^  vertexToolStripMenuItem;
+
 	protected:
 
 	private:
@@ -93,6 +95,7 @@ namespace OpenMesh_EX {
 			this->openModelDialog = (gcnew System::Windows::Forms::OpenFileDialog());
 			this->saveModelDialog = (gcnew System::Windows::Forms::SaveFileDialog());
 			this->hkoglPanelControl1 = (gcnew HKOGLPanel::HKOGLPanelControl());
+			this->vertexToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -107,25 +110,25 @@ namespace OpenMesh_EX {
 			// 
 			// fileToolStripMenuItem
 			// 
-			this->fileToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
+			this->fileToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
 				this->loadModelToolStripMenuItem,
-					this->saveModelToolStripMenuItem
+					this->saveModelToolStripMenuItem, this->vertexToolStripMenuItem
 			});
 			this->fileToolStripMenuItem->Name = L"fileToolStripMenuItem";
-			this->fileToolStripMenuItem->Size = System::Drawing::Size(38, 20);
+			this->fileToolStripMenuItem->Size = System::Drawing::Size(37, 20);
 			this->fileToolStripMenuItem->Text = L"File";
 			// 
 			// loadModelToolStripMenuItem
 			// 
 			this->loadModelToolStripMenuItem->Name = L"loadModelToolStripMenuItem";
-			this->loadModelToolStripMenuItem->Size = System::Drawing::Size(144, 22);
+			this->loadModelToolStripMenuItem->Size = System::Drawing::Size(152, 22);
 			this->loadModelToolStripMenuItem->Text = L"Load Model";
 			this->loadModelToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::loadModelToolStripMenuItem_Click);
 			// 
 			// saveModelToolStripMenuItem
 			// 
 			this->saveModelToolStripMenuItem->Name = L"saveModelToolStripMenuItem";
-			this->saveModelToolStripMenuItem->Size = System::Drawing::Size(144, 22);
+			this->saveModelToolStripMenuItem->Size = System::Drawing::Size(152, 22);
 			this->saveModelToolStripMenuItem->Text = L"Save Model";
 			this->saveModelToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::saveModelToolStripMenuItem_Click);
 			// 
@@ -159,6 +162,13 @@ namespace OpenMesh_EX {
 			this->hkoglPanelControl1->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MyForm::hkoglPanelControl1_MouseDown);
 			this->hkoglPanelControl1->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MyForm::hkoglPanelControl1_MouseMove);
 			this->hkoglPanelControl1->MouseWheel += gcnew System::Windows::Forms::MouseEventHandler(this, &MyForm::hkoglPanelControl1_MouseWheel);
+			// 
+			// vertexToolStripMenuItem
+			// 
+			this->vertexToolStripMenuItem->Name = L"vertexToolStripMenuItem";
+			this->vertexToolStripMenuItem->Size = System::Drawing::Size(152, 22);
+			this->vertexToolStripMenuItem->Text = L"vertex";
+			this->vertexToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::vertexToolStripMenuItem_Click);
 			// 
 			// MyForm
 			// 
@@ -230,7 +240,7 @@ private: System::Void hkoglPanelControl1_MouseDown(System::Object^  sender, Syst
 		//cout << "viewport: " << *viewport << endl;
 		cout << "obj(x, y, z): (" << objX << ", " << objY << ", " << objZ << ")" << endl;
 		cout << "-------------------------------------------------------------" << endl;
-		mesh->choiceFace(objX, objY, objZ);///選面
+		//mesh->choiceFace(objX, objY, objZ);///選面
 		mesh->choicePoint(objX, objY, objZ);///選點
 	}
 }
@@ -322,6 +332,9 @@ private: System::Void saveModelDialog_FileOk(System::Object^  sender, System::Co
 
 	if (SaveFile(filename, mesh))
 		std::cout << filename << std::endl;
+}
+
+private: System::Void vertexToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 }
 };
 }

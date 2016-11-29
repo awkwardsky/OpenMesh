@@ -246,9 +246,12 @@ public:
 	void choicePoint(GLdouble objX, GLdouble objY, GLdouble objZ);
 	OMT::FHandle faceHandle;
 	OMT::VHandle faceVertexHandle[3];
-	
-	OMT::VHandle pointHandle;
 	//OMT::VHandle pointFaceHandle;
+
+	OMT::VHandle pointHandle;
+	std::vector<OMT::VHandle> closePointHandle;
+	std::vector<OMT::FHandle> closeFaceHandle;
+	
 
 private:
 };
